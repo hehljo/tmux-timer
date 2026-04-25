@@ -32,17 +32,13 @@ You want a long-running command to fire later (a backup at 3 AM, a deploy at 14:
 
 ## Requirements
 
-| Tool        | Purpose                          | Install (Debian/Ubuntu)        |
-|-------------|----------------------------------|--------------------------------|
-| `bash`      | shell                            | preinstalled                   |
-| `tmux`      | target sessions                  | `sudo apt install tmux`        |
-| `at` + `atd` | scheduling backend              | `sudo apt install at`          |
+| Tool        | Purpose            |
+|-------------|--------------------|
+| `bash`      | shell              |
+| `tmux`      | target sessions    |
+| `at` + `atd` | scheduling backend |
 
-Make sure `atd` is enabled and running:
-
-```bash
-sudo systemctl enable --now atd
-```
+`install.sh` will install any missing dependencies for you and enable the `atd` service. Supported package managers: **apt, dnf, yum, pacman, zypper, apk, brew**.
 
 ---
 
@@ -54,7 +50,19 @@ sudo systemctl enable --now atd
 git clone https://github.com/hehljo/tmux-timer.git && cd tmux-timer && sudo ./install.sh
 ```
 
-This installs `timer.sh` to `/usr/local/bin/timer`.
+This will:
+
+1. Detect your package manager and install `at` and `tmux` if missing.
+2. Enable and start the `atd` service.
+3. Deploy `timer.sh` to `/usr/local/bin/timer`.
+
+### Skip dependency install
+
+If you've already got `at` and `tmux` set up — or want to manage them yourself:
+
+```bash
+sudo ./install.sh --no-deps
+```
 
 ### Manual
 
