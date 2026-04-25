@@ -1,0 +1,14 @@
+# Local-only files
+CLAUDE.md
+.claude/
+
+# Temp scripts created at runtime
+/tmp/tmux_timer.*.sh
+*.tmp
+
+# OS junk
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
